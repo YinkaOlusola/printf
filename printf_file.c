@@ -14,8 +14,8 @@ int _printf(const char *format, ...)
 	va_list input_args;
 
 	format_data format_types[] = {
-		{ "c", print_char },
-		{ "s", print_string },
+		{ 'c', print_char },
+		{ 's', print_string },
 	};
 
 	int *no_printed_char = NULL;
@@ -41,7 +41,7 @@ int _printf(const char *format, ...)
 			}
 			for (j = 0; j < 2; j++)
 			{
-				if (format == format_types[j].specifier)
+				if ((*format) == format_types[j].specifier)
 					format_types[j].func(input_args, no_printed_char);
 			}
 		} format++;
