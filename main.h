@@ -19,7 +19,7 @@ void print_string(va_list args, int *no_char_printed);
 
 typedef struct formattings
 {
-	char *specifier;
+	char specifier;
 	void (*func)(va_list args, int* no_printed_char);
 } format_data;
 
