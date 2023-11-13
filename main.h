@@ -9,13 +9,13 @@
 int _printf(const char *format, ...);
 int print_char(va_list args);
 int print_string(va_list args);
-int print_percent();
+int print_percent(void);
 
 
 /**
- * struct format_types - Struct format_types
- * @identifier: The conversion specifier
- * @f: The function pointer
+ * struct formattings - Struct format_types
+ * @specifier: The conversion specifier
+ * @func: The function pointer
  */
 
 typedef struct formattings
