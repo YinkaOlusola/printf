@@ -56,6 +56,7 @@ int print_string(va_list args)
 
 /**
  * print_percent - Prints the percent sign.
+ * @args: Input arguments
  *
  * Return: 1
  */
@@ -67,7 +68,7 @@ int print_percent(va_list args)
 	int *num = &value;
 
 	if (num == NULL)
-		write(1, num, 1);
+		write(1, "%", 1);
 
 	write(1, "%", 1);
 	return (1);
