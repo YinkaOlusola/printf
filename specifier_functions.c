@@ -51,3 +51,18 @@ int print_string(va_list args)
 	}
 	return (len_of_str);
 }
+
+/*PRINT PERCENT*/
+
+/**
+ * print_percent - Prints the percent sign.
+ *
+ * Return: 1
+ */
+
+int print_percent()
+{
+
+	write(1, "%", 1);
+	return (1);
+}
