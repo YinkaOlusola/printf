@@ -25,27 +25,28 @@ int _printf(const char *format, ...)
 		if (*format == '\0')
 			break;
 		if (*format != '%')
-		{	write(1, format, 1);
-			no_printed_char++; }
+	{	write(1, format, 1);
+		no_printed_char++; 
+		}
 		else
-		{	format++;
-			if (*format == '%')
-			{	write(1, format, 1);
-				no_printed_char++; }
-			else
-			{
-				for (j = 0; j < 2; j++)
-				{
-					if ((*format) == format_types[j].specifier)
-					{	no_printed_char += format_types[j].func(input_args);
-						break; }
-					else if (((*format) != format_types[j].specifier) && (j >= 1))
-					{	write(1, "%", 1);
-						write(1, format, 1);
-						no_printed_char++; }
-				}
-			}
-		} format++;
+	{	format++;
+		if (*format == '%')
+	{	write(1, format, 1);
+		no_printed_char++; }
+		else
+	{
+		for (j = 0; j < 2; j++)
+		{
+		if ((*format) == format_types[j].specifier)
+		{	no_printed_char += format_types[j].func(input_args);
+			break; }
+		else if (((*format) != format_types[j].specifier) && (j >= 1))
+		{	write(1, "%", 1);
+			write(1, format, 1);
+			no_printed_char++; }
+		}
+		}
+	} format++;
 	}
 	va_end(input_args);
 	return (no_printed_char);
