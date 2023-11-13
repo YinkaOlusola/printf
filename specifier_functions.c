@@ -13,7 +13,10 @@ int print_char(va_list args)
 {
 	char output = va_arg(args, int);
 
-	write(1, &output, 1);
+	if (sizeof(output) != sizeof(char))
+		output = (char)output;
+
+	write(1, &output, strlen(output));
 	return (1);
 }
 
