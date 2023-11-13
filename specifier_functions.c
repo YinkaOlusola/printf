@@ -60,7 +60,7 @@ int print_string(va_list args)
  * Return: 1
  */
 
-int print_percent()
+int print_percent(void)
 {
 
 	write(1, "%", 1);
