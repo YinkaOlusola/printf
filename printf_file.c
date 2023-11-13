@@ -10,7 +10,7 @@
 
 int _printf(const char *format, ...)
 {
-	int j, char_printed;
+	int j;
 	va_list input_args;
 
 	format_data format_types[] = {
@@ -18,10 +18,8 @@ int _printf(const char *format, ...)
 		{ 's', print_string },
 	};
 
-	int *no_printed_char = NULL;
+	int no_printed_char = 0;
 
-	no_printed_char = (int *)malloc(sizeof(int));
-	*no_printed_char = 0;
 	if (format == NULL)
 		return (-1);
 	va_start(input_args, format);
@@ -31,53 +29,49 @@ int _printf(const char *format, ...)
 			break;
 		if (*format != '%')
 		{	write(1, format, 1);
-			(*no_printed_char)++;
+			no_printed_char++;
 		}
 		else
 		{	format++;
 			if (*format == '%')
 			{	write(1, format, 1);
-				(*no_printed_char)++;
+				no_printed_char++;
 			}
 			for (j = 0; j < 2; j++)
 			{
 				if ((*format) == format_types[j].specifier)
-					format_types[j].func(input_args, no_printed_char);
+					no_printed_char += format_types[j].func(input_args);
 			}
 		} format++;
 	}
 	va_end(input_args);
-	char_printed = *no_printed_char;
-	free(no_printed_char);
-	return (char_printed);
+	return (no_printed_char);
 }
 
 /**
   * print_char - Prints a character to the standard output
   * @args: Input arguments
-  * @no_char_printed: Number of characters printed so far.
   *
-  * Return: Nothing
+  * Return: Lenght of characters
   */
 
-void print_char(va_list args, int *no_char_printed)
+int print_char(va_list args)
 {
 	char output = va_arg(args, int);
 
 	write(1, &output, 1);
-	(*no_char_printed)++;
+	return (1);
 }
 
 
 /**
   * print_string - Prints a string
   * @args: A list of variadic arguments
-  * @no_char_printed: Number of characters printed so far.
   *
-  * Return: Nothing
+  * Return: Length of string
   */
 
-void print_string(va_list args, int *no_char_printed)
+int print_string(va_list args)
 {
 	char *arg = va_arg(args, char *);
 	int len_of_str = 0;
@@ -86,5 +80,5 @@ void print_string(va_list args, int *no_char_printed)
 		len_of_str++;
 
 	write(1, arg, len_of_str);
-	*no_char_printed += len_of_str;
+	return (len_of_str);
 }

@@ -7,8 +7,8 @@
 
 
 int _printf(const char *format, ...);
-void print_char(va_list args, int *no_char_printed);
-void print_string(va_list args, int *no_char_printed);
+int print_char(va_list args);
+int print_string(va_list args);
 
 
 /**
@@ -20,7 +20,7 @@ void print_string(va_list args, int *no_char_printed);
 typedef struct formattings
 {
 	char specifier;
-	void (*func)(va_list args, int* no_printed_char);
+	int (*func)(va_list args);
 } format_data;
 
 
