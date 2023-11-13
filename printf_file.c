@@ -33,7 +33,8 @@ int _printf(const char *format, ...)
 			{	write(1, format, 1);
 				no_printed_char++; }
 			else
-			{	for (j = 0; j < 2; j++)
+			{
+				for (j = 0; j < 2; j++)
 				{
 					if ((*format) == format_types[j].specifier)
 					{	no_printed_char += format_types[j].func(input_args);
@@ -41,8 +42,7 @@ int _printf(const char *format, ...)
 					else if (((*format) != format_types[j].specifier) && (j >= 1))
 					{	write(1, "%", 1);
 						write(1, format, 1);
-						no_printed_char++;
-					}
+						no_printed_char++; }
 				}
 			}
 		} format++;
