@@ -10,15 +10,12 @@
 
 int _printf(const char *format, ...)
 {
-	int j;
+	int j, no_printed_char = 0;
 	va_list input_args;
 
 	format_data format_types[] = {
-		{ 'c', print_char },
-		{ 's', print_string },
+		{ 'c', print_char }, { 's', print_string }
 	};
-
-	int no_printed_char = 0;
 
 	if (format == NULL)
 		return (-1);
@@ -29,18 +26,24 @@ int _printf(const char *format, ...)
 			break;
 		if (*format != '%')
 		{	write(1, format, 1);
-			no_printed_char++;
-		}
+			no_printed_char++; }
 		else
 		{	format++;
 			if (*format == '%')
 			{	write(1, format, 1);
-				no_printed_char++;
-			}
-			for (j = 0; j < 2; j++)
-			{
-				if ((*format) == format_types[j].specifier)
-					no_printed_char += format_types[j].func(input_args);
+				no_printed_char++; }
+			else
+			{	for (j = 0; j < 2; j++)
+				{
+					if ((*format) == format_types[j].specifier)
+					{	no_printed_char += format_types[j].func(input_args);
+						break; }
+					else if (((*format) != format_types[j].specifier) && (j >= 1))
+					{	write(1, "%", 1);
+						write(1, format, 1);
+						no_printed_char++;
+					}
+				}
 			}
 		} format++;
 	}
