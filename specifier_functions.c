@@ -13,6 +13,8 @@ int print_char(va_list args)
 {
 	char output = va_arg(args, int);
 
+	if (output == NULL)
+		return (0);
 	if (sizeof(output) != sizeof(char))
 		output = (char)output;
 
