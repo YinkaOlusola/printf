@@ -38,7 +38,7 @@ int _printf(const char *format, ...)
 				else if (((*format) != format_types[j].specifier) && (j >= 2))
 				{	write(1, "%", 1);
 					write(1, format, 1);
-					no_printed_char++; }
+					no_printed_char += 2; }
 			}
 		} format++;
 	}
