@@ -6,7 +6,10 @@
   * print_char - Prints a character to the standard output
   * @args: Input arguments
   *
-  * Return: Lenght of characters
+  * @precision: Precision specification
+  * @flags: Calculates active flags
+  * @width: get width.
+  * Return: Length of characters
   */
 
 int print_char(va_list args, int flags, int width, int precision)
