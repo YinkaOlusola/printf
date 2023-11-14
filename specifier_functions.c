@@ -76,11 +76,10 @@ int print_d(va_list args)
 
 	i = 0;
 
-	while (int_value_d > 0)
-	{
+	do {
 		buffer[i++] = (int_value_d % 10) + '0';
 		int_value_d /= 10;
-	}
+	} while (int_value_d > 0);
 
 	for (j = 0; j < (i / 2); j++)
 	{
