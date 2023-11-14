@@ -69,12 +69,6 @@ int print_d(va_list args)
 
 	int int_value_d = va_arg(args, int);
 
-	if (int_value_d < 0)
-	{
-		write(1, "-", 1);
-		int_value_d = -int_value_d;
-	}
-
 	if (!int_value_d)
 	{	char *value = "(null)";
 		while (value[i] != '\0')
@@ -82,6 +76,12 @@ int print_d(va_list args)
 		write(1, value, i); }
 	else
 	{
+		if (int_value_d < 0)
+		{
+			write(1, "-", 1);
+			int_value_d = -int_value_d;
+		}
+
 		do {
 			buffer[i++] = (int_value_d % 10) + '0';
 			int_value_d /= 10;
