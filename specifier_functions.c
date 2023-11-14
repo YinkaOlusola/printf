@@ -82,10 +82,48 @@ int print_d(va_list args)
 		int_value_d /= 10;
 	}
 
-	for (j = 0; j < i / 2; j++)
+	for (j = 0; j < (i / 2); j++)
 	{
-		char tmp = buffer[j];
+		char tmp;
 
+		tmp = buffer[j];
+		buffer[j] = buffer[i - j - 1];
+		buffer[i - j - 1] = tmp;
+	}
+
+	write(1, buffer, i);
+
+	return (0);
+}
+
+/*PRINT I*/
+
+/**
+ * print_i - Prints an integer.
+ * @args: Input arguments.
+ *
+ * Return: Zero.
+ */
+
+int print_i(va_list args)
+{
+	int i, j;
+	char buffer[20];
+
+	int value_i = va_arg(args, int);
+
+	i = 0;
+
+	do {
+		buffer[i++] = (value_i % 10) + '0';
+		value_i /= 10;
+	} while (value_i > 0);
+
+	for (j = 0; j < (i / 2); j++)
+	{
+		char tmp;
+
+		tmp = buffer[j];
 		buffer[j] = buffer[i - j - 1];
 		buffer[i - j - 1] = tmp;
 	}
