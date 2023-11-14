@@ -4,13 +4,11 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
-#include <stddef.h>
 
 
 int _printf(const char *format, ...);
 int print_char(va_list args);
 int print_string(va_list args);
-int print_percent(va_list args);
 
 
 /**
