@@ -52,6 +52,7 @@ int print_str(va_list args)
 	return (len_of_str);
 }
 
+
 /*PRINT D*/
 
 /**
@@ -96,6 +97,22 @@ int print_d(va_list args)
 }
 
 /*PRINT I*/
+
+/**
+ * print_mod - Prints the output for an unknown specifier.
+ * @arg: The input argument.
+ *
+ * Return: Number of characters printed.
+ */
+
+int print_mod(const char *arg)
+{
+	write(1, "%", 1);
+	write(1, arg, 1);
+
+	return (2);
+}
+
 
 /**
  * print_i - Prints an integer.
