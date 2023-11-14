@@ -93,7 +93,7 @@ int print_d(va_list args)
 
 	write(1, buffer, i);
 
-	return (0);
+	return (i);
 }
 
 /*PRINT I*/
@@ -130,5 +130,5 @@ int print_i(va_list args)
 
 	write(1, buffer, i);
 
-	return (0);
+	return (i);
 }
