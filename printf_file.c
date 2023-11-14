@@ -35,7 +35,7 @@ int _printf(const char *format, ...)
 				no_printed_char++; }
 			else
 			{
-				for (j = 0; j < 3; j++)
+				for (j = 0; j < 2; j++)
 				{
 					if ((*format) == format_types[j].specifier)
 					{	no_printed_char += format_types[j].func(input_args);
