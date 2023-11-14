@@ -69,12 +69,7 @@ int print_d(va_list args)
 
 	int int_value_d = va_arg(args, int);
 
-	if (!int_value_d)
-	{	char *value = "(null)";
-		while (value[i] != '\0')
-			i++;
-		write(1, value, i); }
-	else
+	if (int_value_d != -1)
 	{
 		if (int_value_d < 0)
 		{
@@ -97,6 +92,13 @@ int print_d(va_list args)
 		}
 		write(1, buffer, i);
 	}
+	else
+	{
+		char *value = "(null)";
+
+		while (value[i] != '\0')
+			i++;
+		write(1, value, i); }
 	return (i);
 }
 
@@ -132,12 +134,7 @@ int print_i(va_list args)
 
 	int value_i = va_arg(args, int);
 
-	if (!value_i)
-	{	char *value = "(null)";
-		while (value[i] != '\0')
-			i++;
-		write(1, value, i); }
-	else
+	if (value_i)
 	{
 		do {
 			buffer[i++] = (value_i % 10) + '0';
@@ -154,6 +151,13 @@ int print_i(va_list args)
 		}
 		write(1, buffer, i);
 	}
+	else
+	{
+		char *value = "(null)";
+
+		while (value[i] != '\0')
+			i++;
+		write(1, value, i); }
 
 	return (i);
 }
