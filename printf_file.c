@@ -14,7 +14,7 @@ int _printf(const char *format, ...)
 	va_list input_args;
 
 	format_data format_types[] = {
-		{ 'c', print_char }, { 's', print_string }, { '%', print_percent },
+		{ 'c', print_char }, { 's', print_string }, { '%', print_percent }
 	};
 	va_start(input_args, format);
 	if (!format || (format[0] == '%' && !format[1]))
