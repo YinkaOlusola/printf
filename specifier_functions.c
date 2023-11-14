@@ -64,7 +64,7 @@ int print_str(va_list args)
 
 int print_d(va_list args)
 {
-	int i, j;
+	int i = 0, j;
 	char buffer[20];
 
 	int int_value_d = va_arg(args, int);
@@ -75,24 +75,28 @@ int print_d(va_list args)
 		int_value_d = -int_value_d;
 	}
 
-	i = 0;
-
-	do {
-		buffer[i++] = (int_value_d % 10) + '0';
-		int_value_d /= 10;
-	} while (int_value_d > 0);
-
-	for (j = 0; j < (i / 2); j++)
+	if (!int_value_d)
+	{	char *value = "(null)";
+		while (value[i] != '\0')
+			i++;
+		write(1, value, i); }
+	else
 	{
-		char tmp;
+		do {
+			buffer[i++] = (int_value_d % 10) + '0';
+			int_value_d /= 10;
+		} while (int_value_d > 0);
 
-		tmp = buffer[j];
-		buffer[j] = buffer[i - j - 1];
-		buffer[i - j - 1] = tmp;
+		for (j = 0; j < (i / 2); j++)
+		{
+			char tmp;
+
+			tmp = buffer[j];
+			buffer[j] = buffer[i - j - 1];
+			buffer[i - j - 1] = tmp;
+		}
+		write(1, buffer, i);
 	}
-
-	write(1, buffer, i);
-
 	return (i);
 }
 
@@ -123,28 +127,33 @@ int print_mod(const char *arg)
 
 int print_i(va_list args)
 {
-	int i, j;
+	int i = 0, j;
 	char buffer[20];
 
 	int value_i = va_arg(args, int);
 
-	i = 0;
-
-	do {
-		buffer[i++] = (value_i % 10) + '0';
-		value_i /= 10;
-	} while (value_i > 0);
-
-	for (j = 0; j < (i / 2); j++)
+	if (!value_i)
+	{	char *value = "(null)";
+		while (value[i] != '\0')
+			i++;
+		write(1, value, i); }
+	else
 	{
-		char tmp;
+		do {
+			buffer[i++] = (value_i % 10) + '0';
+			value_i /= 10;
+		} while (value_i > 0);
 
-		tmp = buffer[j];
-		buffer[j] = buffer[i - j - 1];
-		buffer[i - j - 1] = tmp;
+		for (j = 0; j < (i / 2); j++)
+		{
+			char tmp;
+
+			tmp = buffer[j];
+			buffer[j] = buffer[i - j - 1];
+			buffer[i - j - 1] = tmp;
+		}
+		write(1, buffer, i);
 	}
-
-	write(1, buffer, i);
 
 	return (i);
 }
